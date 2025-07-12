@@ -12,7 +12,7 @@ const asyncHanler = (fn) => async (req, res, next) => {
 // alternate way
 
 // const asyncHanler = (requestHandler) => {
-//   (req, res, next) => {
+//  return (req, res, next) => {
 //     Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err));
 //   };
 // };

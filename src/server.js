@@ -17,9 +17,13 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 connectDB();
-app.get("/", (req, res) => {
-  res.send("Hello worldd");
-});
+
+//routes import
+import userRouter from "./routes/user.routes.js";
+
+// routes declaration
+
+app.use("/api/v1/users", userRouter);
 
 app.listen(PORT, (req, res) => {
   console.log(`Server has started listening on Port ${PORT}`);
