@@ -10,11 +10,11 @@ class apiError extends Error {
     this.data = null;
     this.message = message;
     this.success = false;
-    this.errors = this.errors;
+    this.errors = error;
     if (stack) {
       this.stack = stack;
     } else {
-      Error.captureStackTrace(this.this.constructor);
+      Error.captureStackTrace(this, this.constructor);
     }
   }
 }

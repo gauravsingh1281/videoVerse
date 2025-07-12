@@ -13,17 +13,19 @@ const registerUser = asyncHanler(async (req, res) => {
     throw new apiError(400, "All fields are required");
   }
   // check for already registered user
-  const existedUser = User.findOne({
+  const existedUser = await User.findOne({
     $or: [{ userName }, { email }],
   });
+
   if (existedUser) {
     throw new apiError(409, "User with email or username already exists");
   }
   // getting files
-  const avatarLocalPath = req.files?.avatar[0]?.path;
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
-  // avatar file validation
-  if (!avatarLocalPath) throw new apiError(400, "Avatar file is required");
+  const avatarLocalPath = req?.files?.avatar?.[0]?.path;
+  const coverImageLocalPath = req?.files?.coverImage?.[0]?.path;
+  if (!avatarLocalPath)
+    // avatar file validation
+    throw new apiError(400, "Avatar file is required");
   // files upload on cloudinary
   const avatar = await uploadOnCloudinary(avatarLocalPath);
   const coverImage = await uploadOnCloudinary(coverImageLocalPath);
