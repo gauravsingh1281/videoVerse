@@ -1,9 +1,11 @@
-import { asyncHanler } from "../utils/asyncHandler.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import { apiError } from "../utils/apiError.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
-const registerUser = asyncHanler(async (req, res) => {
+
+// register user controller
+const registerUser = asyncHandler(async (req, res) => {
   // getting userdata
   const { fullName, email, userName, password } = req.body;
   // validate userdata
@@ -51,5 +53,8 @@ const registerUser = asyncHanler(async (req, res) => {
     .status(201)
     .json(new apiResponse(200, createdUser, "User registered successfully"));
 });
+
+// login user controller
+const loginUser = asyncHandler;
 
 export { registerUser };
