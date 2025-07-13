@@ -16,6 +16,7 @@ router.route("/register").post(
   registerUser
 );
 router.route("/login").post(loginUser);
+
 // Protected route
 router.route("/logout").post(verifyJwt, logoutUser);
 router.route("/refresh-token").post(refreshAccessToken);
